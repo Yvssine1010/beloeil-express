@@ -30,7 +30,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#accueil" className="flex-shrink-0">
-          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-12 w-auto" />
+          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-16 w-auto drop-shadow-lg" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
