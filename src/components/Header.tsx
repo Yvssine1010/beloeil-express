@@ -75,7 +75,7 @@ const Header = () => {
 
       {/* Mobile overlay */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 bg-foreground/98 backdrop-blur-xl flex flex-col">
+        <div className="lg:hidden fixed inset-0 top-20 bg-foreground/98 backdrop-blur-xl flex flex-col">
           <nav className="flex flex-col items-center gap-6 pt-12 flex-1">
             {navLinks.map((l) => (
               <a
