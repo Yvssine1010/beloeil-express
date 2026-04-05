@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo.webp";
+import logo from "@/assets/logo-enhanced.png";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
