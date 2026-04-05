@@ -28,9 +28,9 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+      <div className="container mx-auto flex items-center justify-between h-20 px-4">
         <a href="#accueil" className="flex-shrink-0">
-          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-12 w-auto" />
+          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-16 w-auto drop-shadow-lg" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -50,14 +50,14 @@ const Header = () => {
             href="https://wa.me/15794216049"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-whatsapp text-whatsapp-foreground px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 bg-whatsapp text-whatsapp-foreground px-5 py-2.5 rounded-xl text-sm font-semibold hover:brightness-110 hover:scale-105 transition-all duration-200 shadow-lg shadow-green-500/20"
           >
             <MessageCircle className="w-4 h-4" />
             WhatsApp
           </a>
           <a
             href="tel:+15794216049"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-semibold hover:brightness-110 hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/30"
           >
             <Phone className="w-4 h-4" />
             Appeler
