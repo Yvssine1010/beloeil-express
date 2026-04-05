@@ -28,9 +28,9 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-20 px-4">
+      <div className="container mx-auto flex items-center justify-between h-24 px-4">
         <a href="#accueil" className="flex-shrink-0">
-          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-24 w-auto drop-shadow-lg" />
+          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(100,151,177,0.4)]" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
