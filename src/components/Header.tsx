@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo-enhanced.png";
+import logo from "@/assets/logo.webp";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
@@ -28,9 +28,9 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-20 px-4">
+      <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#accueil" className="flex-shrink-0">
-          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-20 w-auto" />
+          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-12 w-auto" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -75,7 +75,7 @@ const Header = () => {
 
       {/* Mobile overlay */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-20 bg-foreground/98 backdrop-blur-xl flex flex-col">
+        <div className="lg:hidden fixed inset-0 top-16 bg-foreground/98 backdrop-blur-xl flex flex-col">
           <nav className="flex flex-col items-center gap-6 pt-12 flex-1">
             {navLinks.map((l) => (
               <a
