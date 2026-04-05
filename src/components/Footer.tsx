@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Phone, Mail, MapPin, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo.webp";
+import logo from "@/assets/logo-enhanced.png";
 
 const Footer = () => (
   <footer className="bg-foreground pt-16 pb-8">
