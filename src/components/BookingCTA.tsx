@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Mail } from "lucide-react";
-import taxiCamry from "@/assets/taxi-camry.webp";
+import appMockup from "@/assets/app-mockup.png";
 
 const BookingCTA = () => (
   <section id="contact" className="py-20 bg-foreground/95">
