@@ -46,7 +46,7 @@ const Fleet = () => {
   const doubled = [...vehicles, ...vehicles];
 
   return (
-    <section id="flotte" className="py-20 bg-background">
+    <section id="flotte" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           className="mb-12"

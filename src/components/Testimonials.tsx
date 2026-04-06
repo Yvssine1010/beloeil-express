@@ -79,9 +79,9 @@ const Testimonials = () => (
           />
           <div className="grid grid-cols-3 gap-3">
             {stats.map((s) => (
-              <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+              <div key={s.label} className="bg-foreground/5 border border-foreground/10 rounded-xl p-4 text-center">
                 <p className="text-2xl font-bold text-primary">{s.value}</p>
-                <p className="text-xs text-white/60">{s.label}</p>
+                <p className="text-xs text-muted-foreground">{s.label}</p>
               </div>
             ))}
           </div>
