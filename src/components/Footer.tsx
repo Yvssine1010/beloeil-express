@@ -70,11 +70,11 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="border-t border-foreground/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground">
+      <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-xs text-white/40">
           © {new Date().getFullYear()} Taxi Beloeil Saint-Hilaire. Tous droits réservés.
         </p>
-        <div className="flex gap-4 text-xs text-muted-foreground">
+        <div className="flex gap-4 text-xs text-white/40">
           <a href="#" className="hover:text-primary transition-colors">Politique de confidentialité</a>
           <a href="#" className="hover:text-primary transition-colors">Conditions d'utilisation</a>
         </div>
