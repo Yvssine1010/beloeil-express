@@ -1,5 +1,6 @@
 import { KeyRound } from "lucide-react";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import serviceDeblocageImg from "@/assets/service-deblocage.png";
 
 const ServiceDeblocage = () => (
   <ServicePageLayout
@@ -9,6 +10,7 @@ const ServiceDeblocage = () => (
     price="Sur devis"
     heroDesc="Clés oubliées dans l'auto ? Notre équipe vous débloque en quelques minutes, sans endommager votre véhicule."
     color="rgba(239,68,68,0.15)"
+    image={serviceDeblocageImg}
     details={[
       "Se retrouver verrouillé hors de son véhicule est une situation stressante. Notre équipe intervient rapidement avec des outils professionnels pour ouvrir votre portière sans causer aucun dommage.",
       "Nos techniciens sont formés pour travailler sur tous les types de véhicules, des modèles classiques aux voitures modernes avec systèmes de verrouillage électronique.",
