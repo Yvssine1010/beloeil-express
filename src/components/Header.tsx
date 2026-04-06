@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.webp";
 
 const navLinks = [
@@ -13,12 +14,23 @@ const navLinks = [
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isHome) {
+      e.preventDefault();
+      navigate("/" + href);
+    }
+    setMenuOpen(false);
+  };
 
   return (
     <header
@@ -29,7 +41,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-24 px-4">
-        <a href="#accueil" className="flex-shrink-0">
+        <a href={isHome ? "#accueil" : "/"} className="flex-shrink-0" onClick={(e) => { if (!isHome) { e.preventDefault(); navigate("/"); } }}>
           <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(212,175,55,0.5)]" style={{ filter: "drop-shadow(0 0 6px rgba(212,175,55,0.4)) brightness(1.1) saturate(1.2)" }} />
         </a>
 
@@ -37,7 +49,8 @@ const Header = () => {
           {navLinks.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={isHome ? l.href : "/" + l.href}
+              onClick={(e) => handleNavClick(e, l.href)}
               className="text-sm font-medium text-white/80 hover:text-primary transition-colors"
             >
               {l.label}
@@ -80,8 +93,8 @@ const Header = () => {
             {navLinks.map((l) => (
               <a
                 key={l.href}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
+                href={isHome ? l.href : "/" + l.href}
+                onClick={(e) => handleNavClick(e, l.href)}
                 className="text-xl font-medium text-white/80 hover:text-primary transition-colors"
               >
                 {l.label}
