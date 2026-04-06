@@ -41,7 +41,7 @@ const BookingCTA = () => (
             </a>
           </div>
 
-          <a href="mailto:info@taxibeloeil.ca" className="inline-flex items-center gap-2 text-white/60 text-sm hover:text-primary transition-colors">
+          <a href="mailto:info@taxibeloeil.ca" className="inline-flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-colors">
             <Mail className="w-4 h-4" /> info@taxibeloeil.ca
           </a>
         </motion.div>
