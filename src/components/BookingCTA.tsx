@@ -4,7 +4,7 @@ import taxiCamry from "@/assets/taxi-camry.webp";
 import appMockup from "@/assets/app-mockup-clean.png";
 
 const BookingCTA = () => (
-  <section id="contact" className="py-20 bg-foreground/95">
+  <section id="contact" className="py-20 bg-white">
     <div className="container mx-auto px-4">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
