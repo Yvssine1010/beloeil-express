@@ -21,8 +21,8 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-bold text-white mb-4">Nos services</h4>
-          <ul className="space-y-2 text-sm text-white/60">
+          <h4 className="font-bold text-foreground mb-4">Nos services</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
             <li><a href="#services" className="hover:text-primary transition-colors">Taxi local</a></li>
             <li><a href="#services" className="hover:text-primary transition-colors">Transport aéroport</a></li>
             <li><a href="#services" className="hover:text-primary transition-colors">Survoltage</a></li>
