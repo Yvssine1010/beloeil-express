@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
           <img src={logo} alt="Taxi Beloeil" className="h-16 mb-4" />
-          <p className="text-white/60 text-sm mb-4">
+          <p className="text-muted-foreground text-sm mb-4">
             Service de taxi professionnel à Beloeil et Saint-Hilaire. Disponible 24/7.
           </p>
           <div className="flex gap-3">
