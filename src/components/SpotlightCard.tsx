@@ -22,10 +22,10 @@ const SpotlightCard = ({ children, spotlightColor = "rgba(100,151,177,0.15)" }: 
       onMouseMove={handleMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative bg-white/5 border border-white/10 rounded-2xl p-6 transition-colors hover:border-white/20 overflow-hidden"
+      className="relative bg-foreground/80 backdrop-blur-md border border-white/15 rounded-2xl p-6 transition-colors hover:border-white/30 overflow-hidden"
       style={{
         background: isHovered
-          ? `radial-gradient(300px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%), rgba(255,255,255,0.05)`
+          ? `radial-gradient(300px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%), hsla(234,45%,14%,0.8)`
           : undefined,
       }}
     >
