@@ -2,7 +2,7 @@ import { Facebook, Instagram, Phone, Mail, MapPin, MessageCircle } from "lucide-
 import logo from "@/assets/logo.webp";
 
 const Footer = () => (
-  <footer className="bg-white border-t border-foreground/10 pt-16 pb-8">
+  <footer className="bg-foreground pt-16 pb-8">
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
