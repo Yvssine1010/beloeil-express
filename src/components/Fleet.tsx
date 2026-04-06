@@ -1,8 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { ArrowLeft, ArrowRight, Users } from "lucide-react";
+import { Users } from "lucide-react";
 
 import fleetAudi from "@/assets/fleet-audi.jpg";
 import fleetHyundai from "@/assets/fleet-hyundai.jpg";
@@ -20,87 +17,56 @@ const vehicles = [
   { name: "Van Accessible", desc: "Toyota Camry — Polyvalent", seats: 4, img: taxiCamry },
 ];
 
+const VehicleCard = ({ v }: { v: typeof vehicles[number] }) => (
+  <div className="flex-shrink-0 w-[300px] md:w-[350px]">
+    <div className="relative rounded-xl overflow-hidden group">
+      <img src={v.img} alt={v.name} className="h-64 w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-5">
+        <h3 className="text-lg font-bold text-white">{v.name}</h3>
+        <p className="text-white/60 text-sm mb-2">{v.desc}</p>
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-1 text-white/60 text-xs">
+            <Users className="w-3.5 h-3.5" /> {v.seats} places
+          </span>
+          <a
+            href="tel:+15794216049"
+            className="bg-primary text-primary-foreground text-xs font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            Réserver
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const Fleet = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true }),
-  ]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", onSelect);
-    return () => { emblaApi.off("select", onSelect); };
-  }, [emblaApi]);
+  // Duplicate vehicles for seamless loop
+  const doubled = [...vehicles, ...vehicles];
 
   return (
     <section id="flotte" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          className="flex items-end justify-between mb-12"
+          className="mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div>
-            <p className="text-xs uppercase tracking-widest text-primary mb-2">Notre flotte</p>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground">
-              Des véhicules <span className="text-primary">modernes</span>
-            </h2>
-            <p className="text-muted-foreground mt-2">Choisissez le véhicule adapté à vos besoins.</p>
-          </div>
-          <div className="hidden md:flex gap-2">
-            <button onClick={scrollPrev} className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button onClick={scrollNext} className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors">
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+          <p className="text-xs uppercase tracking-widest text-primary mb-2">Notre flotte</p>
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground">
+            Des véhicules <span className="text-primary">modernes</span>
+          </h2>
+          <p className="text-muted-foreground mt-2">Choisissez le véhicule adapté à vos besoins.</p>
         </motion.div>
+      </div>
 
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-4">
-            {vehicles.map((v, i) => (
-              <div key={i} className="flex-shrink-0 basis-[85%] md:basis-[45%] lg:basis-[30%]">
-                <div className="relative rounded-xl overflow-hidden group">
-                  <img src={v.img} alt={v.name} className="h-64 w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <h3 className="text-lg font-bold text-white">{v.name}</h3>
-                    <p className="text-white/60 text-sm mb-2">{v.desc}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1 text-white/60 text-xs">
-                        <Users className="w-3.5 h-3.5" /> {v.seats} places
-                      </span>
-                      <a
-                        href="tel:+15794216049"
-                        className="bg-primary text-primary-foreground text-xs font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
-                      >
-                        Réserver
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex justify-center gap-2 mt-6">
-          {vehicles.map((_, i) => (
-            <button
-              key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === selectedIndex ? "w-6 bg-primary" : "w-2 bg-foreground/20"
-              }`}
-              onClick={() => emblaApi?.scrollTo(i)}
-              aria-label={`Slide ${i + 1}`}
-            />
+      <div className="overflow-hidden">
+        <div className="flex gap-4 animate-scroll-left hover:[animation-play-state:paused]">
+          {doubled.map((v, i) => (
+            <VehicleCard key={i} v={v} />
           ))}
         </div>
       </div>
