@@ -27,7 +27,7 @@ const stats = [
 ];
 
 const Testimonials = () => (
-  <section className="py-20 bg-foreground">
+  <section className="py-20 bg-white">
     <div className="container mx-auto px-4">
       <div className="grid lg:grid-cols-2 gap-12">
         <div>
@@ -38,7 +38,7 @@ const Testimonials = () => (
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs uppercase tracking-widest text-primary mb-2">Témoignages</p>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground mb-8">
               Ce que disent nos <span className="text-primary">clients</span>
             </h2>
           </motion.div>
@@ -47,7 +47,7 @@ const Testimonials = () => (
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-primary/30 transition-colors"
+                className="bg-foreground/5 border border-foreground/10 rounded-2xl p-6 hover:bg-foreground/10 hover:border-primary/30 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -59,9 +59,9 @@ const Testimonials = () => (
                     <Star key={j} className="w-4 h-4 fill-primary text-primary" />
                   ))}
                 </div>
-                <p className="text-white/70 mb-4 italic">"{t.text}"</p>
-                <p className="font-bold text-white">{t.name}</p>
-                <p className="text-xs text-white/50">{t.city}</p>
+                <p className="text-muted-foreground mb-4 italic">"{t.text}"</p>
+                <p className="font-bold text-foreground">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.city}</p>
               </motion.div>
             ))}
           </div>
@@ -71,7 +71,7 @@ const Testimonials = () => (
           <motion.img
             src={taxiCamry}
             alt="Taxi Beloeil"
-            className="w-full h-[500px] object-cover rounded-2xl border border-white/10 mb-4"
+            className="w-full h-[500px] object-cover rounded-2xl border border-foreground/10 mb-4"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -79,9 +79,9 @@ const Testimonials = () => (
           />
           <div className="grid grid-cols-3 gap-3">
             {stats.map((s) => (
-              <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+              <div key={s.label} className="bg-foreground/5 border border-foreground/10 rounded-xl p-4 text-center">
                 <p className="text-2xl font-bold text-primary">{s.value}</p>
-                <p className="text-xs text-white/60">{s.label}</p>
+                <p className="text-xs text-muted-foreground">{s.label}</p>
               </div>
             ))}
           </div>

@@ -61,7 +61,7 @@ const services = [
 ];
 
 const Services = () => (
-  <section id="services" className="py-20 bg-foreground/95">
+  <section id="services" className="relative py-20 bg-gradient-to-b from-foreground/95 via-foreground/60 to-white">
     <div className="container mx-auto px-4">
       <motion.div
         className="text-center mb-12"
