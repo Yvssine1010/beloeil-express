@@ -14,11 +14,11 @@ const BookingCTA = () => (
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs uppercase tracking-widest text-primary mb-2">Réservation rapide</p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-3">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground mb-3">
             Besoin d'un taxi ?{" "}
-            <span className="text-white/80">Contactez-nous maintenant</span>
+            <span className="text-foreground/70">Contactez-nous maintenant</span>
           </h2>
-          <p className="text-white/70 mb-8 max-w-md">
+          <p className="text-muted-foreground mb-8 max-w-md">
             Appelez-nous directement ou envoyez un message WhatsApp pour une réservation instantanée. Service disponible 24/7.
           </p>
 
