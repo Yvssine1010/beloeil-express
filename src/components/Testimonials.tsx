@@ -71,7 +71,7 @@ const Testimonials = () => (
           <motion.img
             src={taxiCamry}
             alt="Taxi Beloeil"
-            className="w-full h-[500px] object-cover rounded-2xl border border-white/10 mb-4"
+            className="w-full h-[500px] object-cover rounded-2xl border border-foreground/10 mb-4"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
