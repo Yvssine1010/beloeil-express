@@ -42,8 +42,8 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-bold text-white mb-4">Contact</h4>
-          <ul className="space-y-3 text-sm text-white/60">
+          <h4 className="font-bold text-foreground mb-4">Contact</h4>
+          <ul className="space-y-3 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
               Beloeil & Saint-Hilaire, QC
