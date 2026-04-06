@@ -59,9 +59,9 @@ const Testimonials = () => (
                     <Star key={j} className="w-4 h-4 fill-primary text-primary" />
                   ))}
                 </div>
-                <p className="text-white/70 mb-4 italic">"{t.text}"</p>
-                <p className="font-bold text-white">{t.name}</p>
-                <p className="text-xs text-white/50">{t.city}</p>
+                <p className="text-muted-foreground mb-4 italic">"{t.text}"</p>
+                <p className="font-bold text-foreground">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.city}</p>
               </motion.div>
             ))}
           </div>
