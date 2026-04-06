@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Car, Plane, Battery, KeyRound, Users, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
 const services = [
@@ -10,6 +12,7 @@ const services = [
     desc: "Courses dans Beloeil, Saint-Hilaire et les environs. Service rapide et ponctuel.",
     price: "Dès 8$",
     color: "rgba(100,151,177,0.15)",
+    slug: "/services/taxi-local",
   },
   {
     icon: Plane,
@@ -18,6 +21,7 @@ const services = [
     desc: "Transferts vers YUL Montréal-Trudeau et tous les aéroports. Tarif fixe, sans surprise.",
     price: "Tarif fixe",
     color: "rgba(34,197,94,0.15)",
+    slug: "/services/aeroport",
   },
   {
     icon: Battery,
@@ -26,6 +30,7 @@ const services = [
     desc: "Batterie à plat ? Nous intervenons rapidement pour recharger votre véhicule.",
     price: "25$",
     color: "rgba(168,85,247,0.15)",
+    slug: "/services/survoltage",
   },
   {
     icon: KeyRound,
@@ -34,6 +39,7 @@ const services = [
     desc: "Clés oubliées dans l'auto ? Notre équipe vous débloque en quelques minutes.",
     price: "Sur devis",
     color: "rgba(239,68,68,0.15)",
+    slug: "/services/deblocage",
   },
   {
     icon: Users,
@@ -42,6 +48,7 @@ const services = [
     desc: "Minivan et véhicules spacieux pour vos sorties en famille ou entre amis.",
     price: "Sur devis",
     color: "rgba(245,158,11,0.15)",
+    slug: "/services/groupe",
   },
   {
     icon: Clock,
@@ -49,6 +56,7 @@ const services = [
     title: "Service de nuit",
     desc: "Disponible à toute heure, week-ends et jours fériés inclus.",
     color: "rgba(6,182,212,0.15)",
+    slug: "/services/nuit",
   },
 ];
 
@@ -80,19 +88,26 @@ const Services = () => (
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
           >
-            <SpotlightCard spotlightColor={s.color}>
-              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
-                <s.icon className="w-6 h-6 text-primary" />
-              </div>
-              <span className="text-xs text-primary/70">{s.tag}</span>
-              <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
-              <p className="text-sm text-white/60 mb-3">{s.desc}</p>
-              {s.price && (
-                <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                  {s.price}
-                </span>
-              )}
-            </SpotlightCard>
+            <Link to={s.slug} className="block group">
+              <SpotlightCard spotlightColor={s.color}>
+                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
+                  <s.icon className="w-6 h-6 text-primary" />
+                </div>
+                <span className="text-xs text-primary/70">{s.tag}</span>
+                <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
+                <p className="text-sm text-white/60 mb-3">{s.desc}</p>
+                <div className="flex items-center justify-between">
+                  {s.price && (
+                    <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                      {s.price}
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    En savoir plus <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </SpotlightCard>
+            </Link>
           </motion.div>
         ))}
       </div>
