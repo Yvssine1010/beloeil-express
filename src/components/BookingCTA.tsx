@@ -4,7 +4,7 @@ import taxiCamry from "@/assets/taxi-camry.webp";
 import appMockup from "@/assets/app-mockup-clean.png";
 
 const BookingCTA = () => (
-  <section id="contact" className="py-20 bg-foreground/95">
+  <section id="contact" className="py-20 bg-white">
     <div className="container mx-auto px-4">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -14,11 +14,11 @@ const BookingCTA = () => (
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs uppercase tracking-widest text-primary mb-2">Réservation rapide</p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-3">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground mb-3">
             Besoin d'un taxi ?{" "}
-            <span className="text-white/80">Contactez-nous maintenant</span>
+            <span className="text-foreground/70">Contactez-nous maintenant</span>
           </h2>
-          <p className="text-white/70 mb-8 max-w-md">
+          <p className="text-muted-foreground mb-8 max-w-md">
             Appelez-nous directement ou envoyez un message WhatsApp pour une réservation instantanée. Service disponible 24/7.
           </p>
 
@@ -41,7 +41,7 @@ const BookingCTA = () => (
             </a>
           </div>
 
-          <a href="mailto:info@taxibeloeil.ca" className="inline-flex items-center gap-2 text-white/60 text-sm hover:text-primary transition-colors">
+          <a href="mailto:info@taxibeloeil.ca" className="inline-flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-colors">
             <Mail className="w-4 h-4" /> info@taxibeloeil.ca
           </a>
         </motion.div>
