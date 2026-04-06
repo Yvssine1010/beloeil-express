@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Mail } from "lucide-react";
-import taxiCamry from "@/assets/taxi-camry.webp";
+import appMockup from "@/assets/app-mockup.png";
 
 const BookingCTA = () => (
   <section id="contact" className="py-20 bg-foreground/95">
@@ -53,14 +53,10 @@ const BookingCTA = () => (
           transition={{ duration: 0.6 }}
         >
           <img
-            src={taxiCamry}
-            alt="Toyota Camry Taxi"
-            className="w-full h-80 lg:h-96 object-cover rounded-2xl border border-white/20"
+            src={appMockup}
+            alt="Application de réservation taxi"
+            className="w-full max-w-sm mx-auto h-auto object-contain"
           />
-          <div className="absolute bottom-4 left-4 bg-white rounded-xl px-4 py-2 shadow-lg flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm font-semibold text-foreground">Disponible 24/7</span>
-          </div>
         </motion.div>
       </div>
     </div>
