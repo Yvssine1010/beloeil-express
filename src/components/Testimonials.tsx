@@ -47,7 +47,7 @@ const Testimonials = () => (
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-primary/30 transition-colors"
+                className="bg-foreground/5 border border-foreground/10 rounded-2xl p-6 hover:bg-foreground/10 hover:border-primary/30 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
