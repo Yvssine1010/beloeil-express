@@ -1,5 +1,6 @@
 import { Car } from "lucide-react";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import serviceTaxiImg from "@/assets/service-taxi.png";
 
 const ServiceTaxiLocal = () => (
   <ServicePageLayout
@@ -9,6 +10,7 @@ const ServiceTaxiLocal = () => (
     price="Dès 8$"
     heroDesc="Courses dans Beloeil, Saint-Hilaire et les environs. Service rapide, ponctuel et professionnel à prix abordable."
     color="rgba(100,151,177,0.15)"
+    image={serviceTaxiImg}
     details={[
       "Notre service de taxi local dessert Beloeil, Mont-Saint-Hilaire, McMasterville, Otterburn Park et toutes les municipalités avoisinantes. Que ce soit pour un rendez-vous médical, une course au centre commercial ou un déplacement quotidien, nous sommes là.",
       "Nos chauffeurs connaissent parfaitement la région et empruntent toujours les itinéraires les plus rapides pour vous amener à destination dans les meilleurs délais.",

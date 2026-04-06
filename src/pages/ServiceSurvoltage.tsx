@@ -1,5 +1,6 @@
 import { Battery } from "lucide-react";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import serviceSurvoltageImg from "@/assets/service-survoltage.png";
 
 const ServiceSurvoltage = () => (
   <ServicePageLayout
@@ -9,6 +10,7 @@ const ServiceSurvoltage = () => (
     price="25$"
     heroDesc="Batterie à plat ? Nous intervenons rapidement pour recharger votre véhicule, où que vous soyez dans la région."
     color="rgba(168,85,247,0.15)"
+    image={serviceSurvoltageImg}
     details={[
       "Une batterie morte peut arriver à tout moment, surtout pendant les hivers québécois rigoureux. Notre service de survoltage est disponible 24h/24 pour vous dépanner rapidement.",
       "Nos techniciens arrivent équipés de matériel professionnel et peuvent survolter votre véhicule en quelques minutes seulement. Si la batterie ne tient pas la charge, nous pouvons vous conseiller sur les prochaines étapes.",
