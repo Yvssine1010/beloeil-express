@@ -30,7 +30,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-24 px-4">
         <a href="#accueil" className="flex-shrink-0">
-          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(100,151,177,0.4)]" />
+          <img src={logo} alt="Taxi Beloeil Saint-Hilaire" className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(212,175,55,0.5)]" style={{ filter: "drop-shadow(0 0 6px rgba(212,175,55,0.4)) brightness(1.1) saturate(1.2)" }} />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
