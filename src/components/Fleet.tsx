@@ -55,11 +55,18 @@ const Fleet = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs uppercase tracking-widest text-primary mb-2">Notre flotte</p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground">
-            Des véhicules <span className="text-primary">modernes</span>
+          <p className="text-xs uppercase tracking-widest text-primary mb-3 font-semibold">Notre flotte</p>
+          <h2
+            className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground leading-tight"
+            style={{ fontFamily: "'Outfit', sans-serif" }}
+          >
+            Des véhicules{" "}
+            <span className="text-primary relative inline-block">
+              modernes
+              <span className="absolute -bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full" />
+            </span>
           </h2>
-          <p className="text-muted-foreground mt-2">Choisissez le véhicule adapté à vos besoins.</p>
+          <p className="text-muted-foreground mt-3 text-lg">Choisissez le véhicule adapté à vos besoins.</p>
         </motion.div>
       </div>
 
