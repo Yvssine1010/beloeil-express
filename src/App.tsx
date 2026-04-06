@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 import ServiceTaxiLocal from "./pages/ServiceTaxiLocal.tsx";
 import ServiceAeroport from "./pages/ServiceAeroport.tsx";
 import ServiceSurvoltage from "./pages/ServiceSurvoltage.tsx";
