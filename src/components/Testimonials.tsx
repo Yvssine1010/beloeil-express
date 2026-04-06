@@ -38,7 +38,7 @@ const Testimonials = () => (
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs uppercase tracking-widest text-primary mb-2">Témoignages</p>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-foreground mb-8">
               Ce que disent nos <span className="text-primary">clients</span>
             </h2>
           </motion.div>
