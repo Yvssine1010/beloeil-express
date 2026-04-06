@@ -14,9 +14,10 @@ interface ServicePageProps {
   details: string[];
   includes?: string[];
   color: string;
+  image?: string;
 }
 
-const ServicePageLayout = ({ icon: Icon, tag, title, price, heroDesc, details, includes, color }: ServicePageProps) => (
+const ServicePageLayout = ({ icon: Icon, tag, title, price, heroDesc, details, includes, color, image }: ServicePageProps) => (
   <>
     <Header />
     <main className="min-h-screen bg-background pt-24">
@@ -26,29 +27,41 @@ const ServicePageLayout = ({ icon: Icon, tag, title, price, heroDesc, details, i
           <Link to="/#services" className="inline-flex items-center gap-2 text-white/60 hover:text-primary transition-colors mb-8">
             <ArrowLeft className="w-4 h-4" /> Retour aux services
           </Link>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: color }}>
-              <Icon className="w-8 h-8 text-primary" />
-            </div>
-            <span className="text-xs uppercase tracking-widest text-primary mb-2 block">{tag}</span>
-            <h1
-              className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+          <div className="flex items-center justify-between gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl"
             >
-              {title}
-            </h1>
-            <p className="text-lg text-white/70 max-w-2xl">{heroDesc}</p>
-            {price && (
-              <span className="inline-block mt-4 text-sm font-semibold bg-primary/20 text-primary px-4 py-2 rounded-full">
-                {price}
-              </span>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: color }}>
+                <Icon className="w-8 h-8 text-primary" />
+              </div>
+              <span className="text-xs uppercase tracking-widest text-primary mb-2 block">{tag}</span>
+              <h1
+                className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight"
+                style={{ fontFamily: "'Outfit', sans-serif" }}
+              >
+                {title}
+              </h1>
+              <p className="text-lg text-white/70 max-w-2xl">{heroDesc}</p>
+              {price && (
+                <span className="inline-block mt-4 text-sm font-semibold bg-primary/20 text-primary px-4 py-2 rounded-full">
+                  {price}
+                </span>
+              )}
+            </motion.div>
+            {image && (
+              <motion.img
+                src={image}
+                alt={title}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden md:block w-48 lg:w-64 h-48 lg:h-64 object-contain flex-shrink-0"
+              />
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
