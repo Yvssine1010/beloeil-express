@@ -11,11 +11,11 @@ const Footer = () => (
             Service de taxi professionnel à Beloeil et Saint-Hilaire. Disponible 24/7.
           </p>
           <div className="flex gap-3">
-            <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-              <Facebook className="w-4 h-4 text-white/70" />
+            <a href="#" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+              <Facebook className="w-4 h-4 text-foreground/70" />
             </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-              <Instagram className="w-4 h-4 text-white/70" />
+            <a href="#" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+              <Instagram className="w-4 h-4 text-foreground/70" />
             </a>
           </div>
         </div>
