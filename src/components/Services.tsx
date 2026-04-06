@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
+import imgTaxi from "@/assets/service-taxi.png";
+import imgAeroport from "@/assets/service-aeroport.png";
+import imgSurvoltage from "@/assets/service-survoltage.png";
+import imgDeblocage from "@/assets/service-deblocage.png";
+import imgGroupe from "@/assets/service-groupe.png";
+import imgNuit from "@/assets/service-nuit.png";
+
 const services = [
   {
     icon: Car,
@@ -13,6 +20,7 @@ const services = [
     price: "Dès 8$",
     color: "rgba(100,151,177,0.15)",
     slug: "/services/taxi-local",
+    image: imgTaxi,
   },
   {
     icon: Plane,
@@ -22,6 +30,7 @@ const services = [
     price: "Tarif fixe",
     color: "rgba(34,197,94,0.15)",
     slug: "/services/aeroport",
+    image: imgAeroport,
   },
   {
     icon: Battery,
@@ -31,6 +40,7 @@ const services = [
     price: "25$",
     color: "rgba(168,85,247,0.15)",
     slug: "/services/survoltage",
+    image: imgSurvoltage,
   },
   {
     icon: KeyRound,
@@ -40,6 +50,7 @@ const services = [
     price: "Sur devis",
     color: "rgba(239,68,68,0.15)",
     slug: "/services/deblocage",
+    image: imgDeblocage,
   },
   {
     icon: Users,
@@ -49,6 +60,7 @@ const services = [
     price: "Sur devis",
     color: "rgba(245,158,11,0.15)",
     slug: "/services/groupe",
+    image: imgGroupe,
   },
   {
     icon: Clock,
@@ -57,6 +69,7 @@ const services = [
     desc: "Disponible à toute heure, week-ends et jours fériés inclus.",
     color: "rgba(6,182,212,0.15)",
     slug: "/services/nuit",
+    image: imgNuit,
   },
 ];
 
@@ -90,21 +103,30 @@ const Services = () => (
           >
             <Link to={s.slug} className="block group">
               <SpotlightCard spotlightColor={s.color}>
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
-                  <s.icon className="w-6 h-6 text-primary" />
-                </div>
-                <span className="text-xs text-primary/70">{s.tag}</span>
-                <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
-                <p className="text-sm text-white/60 mb-3">{s.desc}</p>
-                <div className="flex items-center justify-between">
-                  {s.price && (
-                    <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                      {s.price}
-                    </span>
-                  )}
-                  <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    En savoir plus <ArrowRight className="w-3 h-3" />
-                  </span>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs text-primary/70">{s.tag}</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
+                    <p className="text-sm text-white/60 mb-3">{s.desc}</p>
+                    <div className="flex items-center gap-3">
+                      {s.price && (
+                        <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                          {s.price}
+                        </span>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                        En savoir plus <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    loading="lazy"
+                    width={100}
+                    height={100}
+                    className="w-20 h-20 md:w-24 md:h-24 object-contain flex-shrink-0"
+                  />
                 </div>
               </SpotlightCard>
             </Link>
