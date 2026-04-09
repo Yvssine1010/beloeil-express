@@ -321,16 +321,30 @@ const BookingMap = () => {
                   }}
                   onFocus={() => setActiveField("departure")}
                   placeholder="Ex: 123 rue Principale, Beloeil"
-                  className="w-full h-11 pl-9 pr-9 rounded-xl border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full h-11 pl-9 pr-16 rounded-xl border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                {departure && (
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
                   <button
-                    onClick={() => clearField("departure")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => handleGeolocate("departure")}
+                    disabled={geolocating === "departure"}
+                    className="p-1 rounded-lg text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
+                    title="Utiliser ma position"
                   >
-                    <X className="w-4 h-4" />
+                    {geolocating === "departure" ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <LocateFixed className="w-4 h-4" />
+                    )}
                   </button>
-                )}
+                  {departure && (
+                    <button
+                      onClick={() => clearField("departure")}
+                      className="p-1 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
               </div>
               {activeField === "departure" && departureSuggestions.length > 0 && (
                 <div className="absolute z-50 w-full mt-1 bg-card border border-border rounded-xl shadow-lg max-h-48 overflow-y-auto">
@@ -372,16 +386,30 @@ const BookingMap = () => {
                   }}
                   onFocus={() => setActiveField("destination")}
                   placeholder="Ex: Aéroport Montréal-Trudeau"
-                  className="w-full h-11 pl-9 pr-9 rounded-xl border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full h-11 pl-9 pr-16 rounded-xl border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                {destination && (
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
                   <button
-                    onClick={() => clearField("destination")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => handleGeolocate("destination")}
+                    disabled={geolocating === "destination"}
+                    className="p-1 rounded-lg text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
+                    title="Utiliser ma position"
                   >
-                    <X className="w-4 h-4" />
+                    {geolocating === "destination" ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <LocateFixed className="w-4 h-4" />
+                    )}
                   </button>
-                )}
+                  {destination && (
+                    <button
+                      onClick={() => clearField("destination")}
+                      className="p-1 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
               </div>
               {activeField === "destination" && destinationSuggestions.length > 0 && (
                 <div className="absolute z-50 w-full mt-1 bg-card border border-border rounded-xl shadow-lg max-h-48 overflow-y-auto">
