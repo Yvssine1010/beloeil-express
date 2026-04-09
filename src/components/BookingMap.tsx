@@ -49,6 +49,7 @@ const BookingMap = () => {
   const [loadingRoute, setLoadingRoute] = useState(false);
   const [routeInfo, setRouteInfo] = useState<{ distance: string; duration: string } | null>(null);
   const [activeField, setActiveField] = useState<"departure" | "destination" | null>(null);
+  const [geolocating, setGeolocating] = useState<"departure" | "destination" | null>(null);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
