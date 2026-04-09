@@ -227,6 +227,51 @@ const BookingMap = () => {
     }
   };
 
+  const reverseGeocode = useCallback(async (lat: number, lon: number): Promise<string> => {
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
+      );
+      const data = await res.json();
+      return data.display_name || `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+    } catch {
+      return `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+    }
+  }, []);
+
+  const handleGeolocate = useCallback((field: "departure" | "destination") => {
+    if (!navigator.geolocation) {
+      toast.error("La géolocalisation n'est pas supportée par votre navigateur.");
+      return;
+    }
+    setGeolocating(field);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
+        const address = await reverseGeocode(coords[0], coords[1]);
+        if (field === "departure") {
+          setDeparture(address);
+          setDepartureCoords(coords);
+          setDepartureSuggestions([]);
+        } else {
+          setDestination(address);
+          setDestinationCoords(coords);
+          setDestinationSuggestions([]);
+        }
+        setGeolocating(null);
+      },
+      (error) => {
+        setGeolocating(null);
+        if (error.code === error.PERMISSION_DENIED) {
+          toast.error("Accès à la position refusé. Veuillez saisir l'adresse manuellement.");
+        } else {
+          toast.error("Impossible de récupérer votre position. Veuillez réessayer.");
+        }
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  }, [reverseGeocode]);
+
   return (
     <section id="reservation" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
