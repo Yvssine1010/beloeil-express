@@ -19,6 +19,7 @@ const Index = () => (
     <Marquee />
     <Services />
     <Fleet />
+    <BookingMap />
     <BookingCTA />
     <WhyUs />
     <About />
