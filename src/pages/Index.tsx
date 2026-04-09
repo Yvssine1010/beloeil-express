@@ -4,6 +4,7 @@ import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Fleet from "@/components/Fleet";
 import BookingCTA from "@/components/BookingCTA";
+import BookingMap from "@/components/BookingMap";
 import WhyUs from "@/components/WhyUs";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
