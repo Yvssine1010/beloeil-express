@@ -278,7 +278,7 @@ const BookingMap = () => {
   }, [reverseGeocode]);
 
   return (
-    <section id="reservation" className="py-20 bg-muted/30">
+    <section id="reservation" className="relative z-0 py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

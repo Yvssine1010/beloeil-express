@@ -84,3 +84,8 @@
 .animate-bounce-arrow {
   animation: bounce-arrow 2s ease-in-out infinite;
 }
+
+/* Keep Leaflet map below the fixed navbar (z-50) */
+.leaflet-container {
+  z-index: 0 !important;
+}
