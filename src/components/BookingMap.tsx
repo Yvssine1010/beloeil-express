@@ -140,9 +140,9 @@ const BookingMap = () => {
           mapRef.current.fitBounds(bounds.pad(0.3), { animate: true });
         }
 
-        const distKm = (route.distance / 1000).toFixed(1);
+        const distKm = route.distance / 1000;
         const durMin = Math.ceil(route.duration / 60);
-        setRouteInfo({ distance: `${distKm} km`, duration: `${durMin} min` });
+        setRouteInfo({ distance: `${distKm.toFixed(1)} km`, duration: `${durMin} min`, distanceKm: distKm });
       }
     } catch {
       console.error("Route fetch failed");
