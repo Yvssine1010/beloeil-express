@@ -48,9 +48,13 @@ const BookingMap = () => {
   const [departureSuggestions, setDepartureSuggestions] = useState<GeoResult[]>([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState<GeoResult[]>([]);
   const [loadingRoute, setLoadingRoute] = useState(false);
-  const [routeInfo, setRouteInfo] = useState<{ distance: string; duration: string } | null>(null);
+  const [routeInfo, setRouteInfo] = useState<{ distance: string; duration: string; distanceKm: number } | null>(null);
   const [activeField, setActiveField] = useState<"departure" | "destination" | null>(null);
   const [geolocating, setGeolocating] = useState<"departure" | "destination" | null>(null);
+  const [departureTime, setDepartureTime] = useState(() => {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+  });
 
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
