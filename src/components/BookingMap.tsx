@@ -432,7 +432,29 @@ const BookingMap = () => {
               )}
             </div>
 
-            {/* Route Info */}
+            {/* Time Picker */}
+            <div className="mb-4">
+              <label className="text-sm font-medium text-foreground mb-1.5 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" />
+                Heure de départ
+              </label>
+              <div className="relative">
+                <input
+                  type="time"
+                  value={departureTime}
+                  onChange={(e) => setDepartureTime(e.target.value)}
+                  className="w-full h-11 px-3 rounded-xl border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+                {isNightTime(departureTime) && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-amber-500">
+                    <Moon className="w-3.5 h-3.5" />
+                    Tarif nuit
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Route Info + Fare */}
             {loadingRoute && (
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -440,21 +462,42 @@ const BookingMap = () => {
               </div>
             )}
 
-            {routeInfo && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-primary/10 rounded-xl p-4 mb-6"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Navigation className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-semibold text-foreground">{routeInfo.distance}</span>
+            {routeInfo && (() => {
+              const fare = calculateFare(routeInfo.distanceKm, isNightTime(departureTime));
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-primary/10 rounded-xl p-4 mb-6 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Navigation className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-semibold text-foreground">{routeInfo.distance}</span>
+                    </div>
+                    <span className="text-sm text-muted-foreground">~{routeInfo.duration}</span>
                   </div>
-                  <span className="text-sm text-muted-foreground">~{routeInfo.duration}</span>
-                </div>
-              </motion.div>
-            )}
+                  <div className="border-t border-border/50 pt-3 space-y-1.5">
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>Prise en charge</span>
+                      <span>{fare.baseCost.toFixed(2)} $</span>
+                    </div>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>Distance ({routeInfo.distance})</span>
+                      <span>{fare.distCost.toFixed(2)} $</span>
+                    </div>
+                    <div className="flex justify-between text-sm font-bold text-foreground pt-1 border-t border-border/50">
+                      <div className="flex items-center gap-1.5">
+                        <DollarSign className="w-4 h-4 text-primary" />
+                        Estimation
+                        {fare.night && <Moon className="w-3 h-3 text-amber-500" />}
+                      </div>
+                      <span className="text-primary">{fare.total.toFixed(2)} $</span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })()}
 
             {/* CTA */}
             <a
