@@ -166,8 +166,8 @@ const Services = () => {
                   </SpotlightCard>
                 </Link>
               </motion.div>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
