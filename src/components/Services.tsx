@@ -74,25 +74,19 @@ const services = [
 ];
 
 const Services = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  // Use page scroll (no target ref) — stable hook count, no nullable ref issues
+  const { scrollYProgress } = useScroll();
 
-  // Subtle parallax for the title block
-  const titleY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
-  // Pre-computed parallax tracks for cards (avoid hooks in .map)
+  // Subtle parallax tracks
+  const titleY = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
   const cardYA = useTransform(scrollYProgress, [0, 1], ["0px", "0px"]);
-  const cardYB = useTransform(scrollYProgress, [0, 1], ["8px", "-8px"]);
-  const cardYC = useTransform(scrollYProgress, [0, 1], ["16px", "-16px"]);
+  const cardYB = useTransform(scrollYProgress, [0, 1], ["6px", "-6px"]);
+  const cardYC = useTransform(scrollYProgress, [0, 1], ["12px", "-12px"]);
   const cardTracks = [cardYA, cardYB, cardYC];
-  // Decorative background drift
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section
-      ref={sectionRef}
       id="services"
       className="relative py-20 bg-gradient-to-b from-foreground/95 via-foreground/60 to-white overflow-hidden"
     >
