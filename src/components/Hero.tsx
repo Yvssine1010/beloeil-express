@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Phone, CalendarCheck, ArrowDown } from "lucide-react";
 import heroTaxi from "@/assets/hero-taxi.webp";
@@ -9,18 +9,13 @@ const images = [heroTaxi, heroNight, heroTesla];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Parallax: background drifts slower, content fades and lifts
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // Use page scroll — stable hook count, parallax effective in hero range (0..~600px)
+  const { scrollY } = useScroll();
+  const imageY = useTransform(scrollY, [0, 800], ["0px", "200px"]);
+  const imageScale = useTransform(scrollY, [0, 800], [1, 1.15]);
+  const contentY = useTransform(scrollY, [0, 800], ["0px", "-120px"]);
+  const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % images.length), []);
 
@@ -31,7 +26,6 @@ const Hero = () => {
 
   return (
     <section
-      ref={sectionRef}
       id="accueil"
       className="relative min-h-[580px] h-screen max-h-[900px] flex items-center overflow-hidden"
     >
