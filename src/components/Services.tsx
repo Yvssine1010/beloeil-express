@@ -83,6 +83,11 @@ const Services = () => {
 
   // Subtle parallax for the title block
   const titleY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
+  // Pre-computed parallax tracks for cards (avoid hooks in .map)
+  const cardYA = useTransform(scrollYProgress, [0, 1], ["0px", "0px"]);
+  const cardYB = useTransform(scrollYProgress, [0, 1], ["8px", "-8px"]);
+  const cardYC = useTransform(scrollYProgress, [0, 1], ["16px", "-16px"]);
+  const cardTracks = [cardYA, cardYB, cardYC];
   // Decorative background drift
   const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
