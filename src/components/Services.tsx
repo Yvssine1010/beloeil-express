@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Car, Plane, Battery, KeyRound, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -73,68 +74,103 @@ const services = [
   },
 ];
 
-const Services = () => (
-  <section id="services" className="relative py-20 bg-gradient-to-b from-foreground/95 via-foreground/60 to-white">
-    <div className="container mx-auto px-4">
+const Services = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Subtle parallax for the title block
+  const titleY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
+  // Pre-computed parallax tracks for cards (avoid hooks in .map)
+  const cardYA = useTransform(scrollYProgress, [0, 1], ["0px", "0px"]);
+  const cardYB = useTransform(scrollYProgress, [0, 1], ["8px", "-8px"]);
+  const cardYC = useTransform(scrollYProgress, [0, 1], ["16px", "-16px"]);
+  const cardTracks = [cardYA, cardYB, cardYC];
+  // Decorative background drift
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="services"
+      className="relative py-20 bg-gradient-to-b from-foreground/95 via-foreground/60 to-white overflow-hidden"
+    >
+      {/* Decorative parallax glow */}
       <motion.div
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        aria-hidden
+        style={{ y: bgY }}
+        className="pointer-events-none absolute inset-0 opacity-40"
       >
-        <p className="text-xs uppercase tracking-widest text-primary mb-2">Nos services</p>
-        <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-3">
-          Tout ce dont vous avez <span className="text-primary">besoin</span>
-        </h2>
-        <p className="text-white/60 max-w-lg mx-auto">
-          Du transport quotidien à l'assistance routière, nous sommes là pour vous.
-        </p>
+        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-          >
-            <Link to={s.slug} className="block group">
-              <SpotlightCard spotlightColor={s.color}>
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs text-primary/70">{s.tag}</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
-                    <p className="text-sm text-white/60 mb-3">{s.desc}</p>
-                    <div className="flex items-center gap-3">
-                      {s.price && (
-                        <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                          {s.price}
+      <div className="relative container mx-auto px-4">
+        <motion.div
+          className="text-center mb-12 will-change-transform"
+          style={{ y: titleY }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-xs uppercase tracking-widest text-primary mb-2">Nos services</p>
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-white mb-3">
+            Tout ce dont vous avez <span className="text-primary">besoin</span>
+          </h2>
+          <p className="text-white/60 max-w-lg mx-auto">
+            Du transport quotidien à l'assistance routière, nous sommes là pour vous.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              style={{ y: cardTracks[i % 3] }}
+              className="will-change-transform"
+            >
+              <Link to={s.slug} className="block group">
+                <SpotlightCard spotlightColor={s.color}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-primary/70">{s.tag}</span>
+                      <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
+                      <p className="text-sm text-white/60 mb-3">{s.desc}</p>
+                      <div className="flex items-center gap-3">
+                        {s.price && (
+                          <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                            {s.price}
+                          </span>
+                        )}
+                        <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                          En savoir plus <ArrowRight className="w-3 h-3" />
                         </span>
-                      )}
-                      <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        En savoir plus <ArrowRight className="w-3 h-3" />
-                      </span>
+                      </div>
                     </div>
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      width={100}
+                      height={100}
+                      className="w-20 h-20 md:w-24 md:h-24 object-contain flex-shrink-0"
+                    />
                   </div>
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    loading="lazy"
-                    width={100}
-                    height={100}
-                    className="w-20 h-20 md:w-24 md:h-24 object-contain flex-shrink-0"
-                  />
-                </div>
-              </SpotlightCard>
-            </Link>
-          </motion.div>
-        ))}
+                </SpotlightCard>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Services;
