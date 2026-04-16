@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Phone, CalendarCheck, ArrowDown } from "lucide-react";
 import heroTaxi from "@/assets/hero-taxi.webp";
 import heroNight from "@/assets/hero-taxi-night.jpg";
@@ -9,6 +9,18 @@ const images = [heroTaxi, heroNight, heroTesla];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax: background drifts slower, content fades and lifts
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % images.length), []);
 
@@ -18,27 +30,39 @@ const Hero = () => {
   }, [next]);
 
   return (
-    <section id="accueil" className="relative min-h-[580px] h-screen max-h-[900px] flex items-center overflow-hidden">
-      {/* Background images */}
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={current}
-          src={images[current]}
-          alt="Taxi Beloeil"
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7 }}
-        />
-      </AnimatePresence>
+    <section
+      ref={sectionRef}
+      id="accueil"
+      className="relative min-h-[580px] h-screen max-h-[900px] flex items-center overflow-hidden"
+    >
+      {/* Background images with parallax */}
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        style={{ y: imageY, scale: imageScale }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={images[current]}
+            alt="Taxi Beloeil"
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          />
+        </AnimatePresence>
+      </motion.div>
 
       {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/30" />
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
 
-      {/* Content */}
-      <div className="relative container mx-auto px-4 z-10">
+      {/* Content with subtle parallax */}
+      <motion.div
+        className="relative container mx-auto px-4 z-10 will-change-transform"
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
         <motion.div
           className="max-w-xl"
           initial={{ opacity: 0, y: 30 }}
@@ -83,7 +107,7 @@ const Hero = () => {
             <span className="text-white/60">12 000+ trajets</span>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Slide dots */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
