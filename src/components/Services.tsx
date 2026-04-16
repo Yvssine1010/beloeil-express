@@ -136,38 +136,38 @@ const Services = () => {
               style={{ y: cardTracks[i % 3] }}
               className="will-change-transform"
             >
-                <Link to={s.slug} className="block group">
-                  <SpotlightCard spotlightColor={s.color}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <span className="text-xs text-primary/70">{s.tag}</span>
-                        <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
-                        <p className="text-sm text-white/60 mb-3">{s.desc}</p>
-                        <div className="flex items-center gap-3">
-                          {s.price && (
-                            <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                              {s.price}
-                            </span>
-                          )}
-                          <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                            En savoir plus <ArrowRight className="w-3 h-3" />
+              <Link to={s.slug} className="block group">
+                <SpotlightCard spotlightColor={s.color}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-primary/70">{s.tag}</span>
+                      <h3 className="text-lg font-bold text-white mt-1 mb-2">{s.title}</h3>
+                      <p className="text-sm text-white/60 mb-3">{s.desc}</p>
+                      <div className="flex items-center gap-3">
+                        {s.price && (
+                          <span className="inline-block text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                            {s.price}
                           </span>
-                        </div>
+                        )}
+                        <span className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                          En savoir plus <ArrowRight className="w-3 h-3" />
+                        </span>
                       </div>
-                      <img
-                        src={s.image}
-                        alt={s.title}
-                        loading="lazy"
-                        width={100}
-                        height={100}
-                        className="w-20 h-20 md:w-24 md:h-24 object-contain flex-shrink-0"
-                      />
                     </div>
-                  </SpotlightCard>
-                </Link>
-              </motion.div>
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      width={100}
+                      height={100}
+                      className="w-20 h-20 md:w-24 md:h-24 object-contain flex-shrink-0"
+                    />
+                  </div>
+                </SpotlightCard>
+              </Link>
             </motion.div>
           ))}
+        </div>
         </div>
       </div>
     </section>
