@@ -434,24 +434,29 @@ const BookingMap = () => {
 
             {/* Time Picker */}
             <div className="mb-4">
-              <label className="text-sm font-medium text-foreground mb-1.5 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                Heure de départ
-              </label>
-              <div className="relative">
-                <input
-                  type="time"
-                  value={departureTime}
-                  onChange={(e) => setDepartureTime(e.target.value)}
-                  className="w-full h-11 px-3 rounded-xl border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                />
-                {isNightTime(departureTime) && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-amber-500">
-                    <Moon className="w-3.5 h-3.5" />
+              <label className="text-sm font-medium text-foreground mb-1.5 flex items-center justify-between gap-2">
+                <span className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  Heure de départ
+                </span>
+                {isNightTime(departureTime) ? (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-full">
+                    <Moon className="w-3 h-3" />
                     Tarif nuit
-                  </div>
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                    <Sun className="w-3 h-3" />
+                    Tarif jour
+                  </span>
                 )}
-              </div>
+              </label>
+              <input
+                type="time"
+                value={departureTime}
+                onChange={(e) => setDepartureTime(e.target.value)}
+                className="w-full h-11 px-3 rounded-xl border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
             </div>
 
             {/* Route Info + Fare */}
