@@ -126,21 +126,16 @@ const Services = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((s, i) => {
-            // Stagger parallax: alternate cards drift slightly different amounts
-            const offset = (i % 3) * 8;
-            return (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                style={{
-                  y: useTransform(scrollYProgress, [0, 1], [`${offset}px`, `${-offset}px`]),
-                }}
-                className="will-change-transform"
-              >
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              style={{ y: cardTracks[i % 3] }}
+              className="will-change-transform"
+            >
                 <Link to={s.slug} className="block group">
                   <SpotlightCard spotlightColor={s.color}>
                     <div className="flex items-start justify-between gap-3">
